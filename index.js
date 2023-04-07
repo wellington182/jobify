@@ -10,6 +10,7 @@ const sqlite3 = require( 'sqlite3' );
 const dbConnection = sqlite.open( { filename: 'banco.sqlite', driver: sqlite3.Database } );
 
 app.set( 'view engine', 'ejs' );
+app.set( 'views', path.join( __dirname, 'views' ) ); 
 
 app.use( express.static( path.resolve( __dirname, 'public' ) ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
