@@ -2,6 +2,7 @@ const express = require( 'express' );
 const app = express();
 
 const bodyParser = require( 'body-parser' );
+const path = require( 'path' );
 
 const sqlite = require( 'sqlite' );
 const sqlite3 = require( 'sqlite3' );
@@ -10,7 +11,7 @@ const dbConnection = sqlite.open( { filename: 'banco.sqlite', driver: sqlite3.Da
 
 app.set( 'view engine', 'ejs' );
 
-app.use( express.static( 'public' ) );
+app.use( express.static( path.resolve( __dirname, 'public' ) ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
 app.get( '/', async( req, res, next ) => {
