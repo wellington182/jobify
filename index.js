@@ -9,6 +9,15 @@ const sqlite3 = require( 'sqlite3' );
 
 const dbConnection = sqlite.open( { filename: 'banco.sqlite', driver: sqlite3.Database } );
 
+app.use( 'admin', ( req, res, next ) => {
+    if ( req.hostname === 'localhost' ) {
+        next();
+    }
+    else {
+        res.send( 'Not allowed' );
+    }
+} );
+
 app.set( 'view engine', 'ejs' );
 app.set( 'views', path.join( __dirname, 'views' ) ); 
 
